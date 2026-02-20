@@ -62,6 +62,11 @@ Read `~/.claude/goals.yaml` and briefly assess:
 - Surface any unreplied messages from known contacts (cross-ref `~/.claude/contacts/`)
 - Don't do a full scan — just flag what's waiting for a response
 
+**Cross-channel filter (mandatory):**
+- Before surfacing ANY item, run `/channelcheck` against it
+- If a flagged email was already handled via iMessage/Slack/other channel, drop it
+- This keeps the briefing tight — only truly unhandled items make the cut
+
 ### Step 5: Present the Briefing
 
 Format the briefing as follows:

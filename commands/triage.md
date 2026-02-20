@@ -14,10 +14,14 @@ and draft responses in your voice. Clear your inbox in minutes.
 You are running inbox triage for {{YOUR_NAME}}. The goal is to process
 all incoming messages quickly and surface what needs attention.
 
-### Step 0: Verify Time and Context
+### Step 0: Verify Time, Context, and Load Filters
 
 Get the current time so you know what "today" and "recent" mean.
 Check the calendar briefly to understand where the user is in their day.
+
+**Before scanning anything**, read `~/.claude/triage-blacklist.yaml` and hold
+it in memory. All scan steps MUST filter against this blacklist. If the file
+doesn't exist, proceed without filtering.
 
 ### Step 1: Scan Channels
 
@@ -68,19 +72,25 @@ For each item found, assign a triage tier:
 - Has it been waiting a long time? (Older = higher urgency)
 - Does it align with active goals?
 
-### Step 3: Check for Already-Replied
+### Step 3: Verify Not Already Handled (ALL Channels)
 
-Before drafting any response, verify the user hasn't already replied:
+**This is a mandatory gate.** No item moves to drafting without passing BOTH checks.
+
+**Check A — Same-channel reply:**
 - Check sent mail for responses to the same thread
 - Check if the contact file shows a more recent interaction
-- If already handled, skip it entirely
+- If already replied in the same thread, skip it entirely
 
-### Step 3.5: Cross-Channel Verification
+**Check B — Cross-channel verification:**
+- Run `/channelcheck` against ALL Tier 1 and Tier 2 items that passed Check A
+- This checks iMessage, Slack, and other connected channels for evidence the
+  item was already addressed on a different channel
+- If channelcheck finds recent activity with the sender, mark as "likely handled"
+  and skip — do NOT draft a response
 
-Run `/channelcheck` against all Tier 1 and Tier 2 items that appear unhandled.
-This checks iMessage, Slack, and other connected channels for evidence the
-item was already addressed on a different channel. Downgrade or annotate
-items accordingly before drafting responses.
+**An item is only actionable if it passes both checks.** Communication is
+multi-channel. An email with no email reply may have been handled via text,
+iMessage, Slack, or in person.
 
 ### Step 4: Draft Responses
 

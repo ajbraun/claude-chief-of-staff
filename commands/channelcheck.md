@@ -36,25 +36,27 @@ For each flagged item, check for **any interaction with that sender** on
 #### iMessage (via imsg CLI)
 Use the `imsg` CLI tool (`brew install steipete/tap/imsg`) to check message history.
 
-**Find the chat:**
-```bash
-imsg chats --limit 50 --json | grep -i "{SENDER_NAME_OR_NUMBER}"
-```
+**Lookup priority (fastest to slowest):**
 
-**Check history for that chat after the inbound timestamp:**
-```bash
-imsg history --chat-id {CHAT_ID} --after "{INBOUND_TIMESTAMP}" --limit 10 --json
-```
+1. **Chat ID from contact file (preferred):** Check `~/.claude/contacts/{name}.md`
+   for an `iMessage Chat ID` field. If present, use it directly — no searching needed:
+   ```bash
+   imsg history --chat-id {CHAT_ID} --after "{INBOUND_TIMESTAMP}" --limit 10 --json
+   ```
 
-Or search by phone number / email directly:
-```bash
-imsg history --participant "{PHONE_OR_EMAIL}" --after "{INBOUND_TIMESTAMP}" --limit 10 --json
-```
+2. **Phone number from contact file:** If no Chat ID but phone is known:
+   ```bash
+   imsg history --participant "{PHONE}" --after "{INBOUND_TIMESTAMP}" --limit 10 --json
+   ```
 
-**Matching strategy:**
-- Try phone number first if available from contact files (`~/.claude/contacts/`)
-- Try email address (some iMessage handles are email-based)
-- Try name-based search via `imsg chats` if no direct identifier is known
+3. **Search by name (last resort):** Only if neither Chat ID nor phone is available:
+   ```bash
+   imsg chats --limit 50 --json | grep -i "{SENDER_NAME}"
+   ```
+   Then use the found chat ID for history lookup.
+
+**Always use Chat ID when available.** It's a direct lookup with zero ambiguity.
+Name-based searching is unreliable — many chats display as phone numbers only.
 
 **What counts as "handled":**
 - Any message with `is_from_me: true` after the email arrived
@@ -97,6 +99,11 @@ Revised action items: [X] (down from [Y])
 If you discover a contact's phone number or iMessage handle during lookup,
 offer to save it to their contact file in `~/.claude/contacts/` for future
 triage runs. This makes subsequent channelchecks faster and more accurate.
+
+If a contact has a phone number but no `iMessage Chat ID`, and you successfully
+find their chat during this run, add the Chat ID to their contact file
+immediately — don't wait to be asked. This is a one-time cost that speeds up
+every future triage.
 
 ### Guidelines
 
