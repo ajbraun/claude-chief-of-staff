@@ -55,7 +55,7 @@ Read `~/.claude/goals.yaml` and briefly assess:
 
 **iMessage** (if `imsg` CLI is available):
 - Run `imsg chats --limit 15 --json` to find recent chats
-- Filter out blacklisted chats (see `~/.claude/imsg-blacklist.yaml`)
+- Filter out blacklisted chats (see `~/.claude/triage-blacklist.yaml`)
 - Skip short-code / automated SMS (5-6 digit identifiers)
 - For the top few non-blacklisted chats, check for unreplied messages:
   `imsg history --chat-id {ID} --limit 3 --json`

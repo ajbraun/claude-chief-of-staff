@@ -28,6 +28,7 @@ Report progress as you go.
 
 1. **Work Email (Gmail)** — Search for recent unread/unreplied emails
    - Query: Messages from the last 24 hours (or since last triage)
+   - Filter out senders/lists in `~/.claude/triage-blacklist.yaml` (`gmail_skip`)
    - Focus on: Direct emails (not newsletters, automated, or CC-only)
 
 2. **Personal Email** — If connected, same approach
@@ -42,7 +43,7 @@ Report progress as you go.
 
 5. **iMessage** (via `imsg` CLI, macOS only)
    - Run `imsg chats --limit 20 --json` to get recent active chats
-   - Filter out blacklisted chats (see `~/.claude/imsg-blacklist.yaml`)
+   - Filter out blacklisted chats (see `~/.claude/triage-blacklist.yaml`)
    - Also skip short-code / automated SMS (identifiers with 5-6 digits)
    - For each remaining chat with recent activity, run:
      `imsg history --chat-id {ID} --limit 5 --json`
@@ -132,7 +133,7 @@ After presenting drafts, wait for the user to:
 - Speed matters. A triage should take 2-3 minutes, not 10.
 - Don't over-explain. The user knows their contacts — just surface what's important.
 - If a channel's MCP server or CLI tool isn't available, skip it silently.
-- For iMessage, always check `~/.claude/imsg-blacklist.yaml` before scanning chats.
+- For iMessage, always check `~/.claude/triage-blacklist.yaml` before scanning chats.
 - Track what was surfaced to avoid re-surfacing in the next triage run.
 - If you find nothing urgent, say so clearly: "Inbox clear. No items need immediate attention."
 - For long email threads, summarize the thread — don't just quote the last message.
