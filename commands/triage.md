@@ -40,8 +40,15 @@ Report progress as you go.
 4. **WhatsApp** — If connected, check recent messages
    - Focus on: Direct messages requiring response
 
-5. **iMessage** — If connected (macOS only)
-   - Focus on: Unreplied messages from contacts
+5. **iMessage** (via `imsg` CLI, macOS only)
+   - Run `imsg chats --limit 20 --json` to get recent active chats
+   - Filter out blacklisted chats (see `~/.claude/imsg-blacklist.yaml`)
+   - Also skip short-code / automated SMS (identifiers with 5-6 digits)
+   - For each remaining chat with recent activity, run:
+     `imsg history --chat-id {ID} --limit 5 --json`
+   - Focus on: Messages where `is_from_me: false` with no subsequent
+     `is_from_me: true` reply (i.e., unreplied messages from contacts)
+   - Cross-reference phone numbers against `~/.claude/contacts/` for names
 
 ### Step 2: Classify Each Item
 
@@ -66,6 +73,13 @@ Before drafting any response, verify the user hasn't already replied:
 - Check sent mail for responses to the same thread
 - Check if the contact file shows a more recent interaction
 - If already handled, skip it entirely
+
+### Step 3.5: Cross-Channel Verification
+
+Run `/channelcheck` against all Tier 1 and Tier 2 items that appear unhandled.
+This checks iMessage, Slack, and other connected channels for evidence the
+item was already addressed on a different channel. Downgrade or annotate
+items accordingly before drafting responses.
 
 ### Step 4: Draft Responses
 
@@ -117,7 +131,8 @@ After presenting drafts, wait for the user to:
 
 - Speed matters. A triage should take 2-3 minutes, not 10.
 - Don't over-explain. The user knows their contacts — just surface what's important.
-- If a channel's MCP server isn't connected, skip it silently.
+- If a channel's MCP server or CLI tool isn't available, skip it silently.
+- For iMessage, always check `~/.claude/imsg-blacklist.yaml` before scanning chats.
 - Track what was surfaced to avoid re-surfacing in the next triage run.
 - If you find nothing urgent, say so clearly: "Inbox clear. No items need immediate attention."
 - For long email threads, summarize the thread — don't just quote the last message.

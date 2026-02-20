@@ -46,12 +46,21 @@ Read `~/.claude/goals.yaml` and briefly assess:
 - Does today's calendar align with the highest-priority goals?
 - Any goal-aligned work that should be scheduled today?
 
-### Step 4: Inbox Quick Scan (if email MCP is connected)
+### Step 4: Inbox Quick Scan
 
-Do a quick scan of email for anything urgent:
+**Email** (if Gmail MCP is connected):
 - Search for emails from the last 12 hours
 - Flag Tier 1 items (from key contacts, marked urgent, or time-sensitive)
 - Don't do a full triage — just surface what's critical
+
+**iMessage** (if `imsg` CLI is available):
+- Run `imsg chats --limit 15 --json` to find recent chats
+- Filter out blacklisted chats (see `~/.claude/imsg-blacklist.yaml`)
+- Skip short-code / automated SMS (5-6 digit identifiers)
+- For the top few non-blacklisted chats, check for unreplied messages:
+  `imsg history --chat-id {ID} --limit 3 --json`
+- Surface any unreplied messages from known contacts (cross-ref `~/.claude/contacts/`)
+- Don't do a full scan — just flag what's waiting for a response
 
 ### Step 5: Present the Briefing
 
