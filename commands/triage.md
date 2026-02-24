@@ -30,12 +30,17 @@ Report progress as you go.
 
 **Channels to scan (in order):**
 
-1. **Work Email (Gmail)** — Search for recent unread/unreplied emails
+1. **Work Email — ajbraun@narradar.com** — Search for recent unread/unreplied emails
    - Query: Messages from the last 24 hours (or since last triage)
    - Filter out senders/lists in `~/.claude/triage-blacklist.yaml` (`gmail_skip`)
    - Focus on: Direct emails (not newsletters, automated, or CC-only)
+   - Note: narradar.com does NOT have Gmail tab filtering (no categories)
 
-2. **Personal Email** — If connected, same approach
+2. **Work Email — andy@layrdata.com** — Same approach
+   - Focus on: Layr-related business, prospects, internal comms
+
+3. **Personal Email — ajbraun@gmail.com** — Same approach
+   - Query: `is:inbox category:primary` (Primary tab only)
    - Focus on: Anything from key contacts or family
 
 3. **Slack** — Check DMs and mentions
@@ -128,7 +133,15 @@ TIER 3 — FYI
 SUMMARY: [X] items need action, [Y] drafts ready to send.
 ```
 
-### Step 6: Await Approval
+### Step 6: Save the Triage Log
+
+After presenting results, write the full triage output to:
+`~/SideProjects/claude-chief-of-staff/Notes/Dailies/{YYYY-MM-DD}-triage.md`
+
+Include the date/time as an H1 header. Append if a file for today already exists
+(you may have run triage multiple times). This creates a searchable daily log.
+
+### Step 7: Await Approval
 
 **NEVER send any message without explicit approval.**
 

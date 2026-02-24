@@ -98,6 +98,13 @@ Based on your calendar and priorities, here's what I'd focus on today:
 3. [Third priority, if time allows]
 ```
 
+### Step 6: Save the Briefing
+
+After presenting, write the full briefing to:
+`~/SideProjects/claude-chief-of-staff/Notes/Dailies/{YYYY-MM-DD}-gm.md`
+
+Include the date as an H1 header at the top. This creates a daily log for reference.
+
 ### Guidelines
 
 - Be concise. The whole briefing should fit on one screen.

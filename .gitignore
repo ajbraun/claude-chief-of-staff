@@ -21,3 +21,16 @@ cache/
 local/
 *.local.md
 *.local.yaml
+
+# Personal data — do not commit
+linkedin-contacts.csv
+linkedin-contacts-enriched.csv
+prospects
+prospects/
+tmp
+tmp/
+
+# Daily logs and personal research notes — kept local
+Notes/Dailies/
+Notes/active/
+Notes/complete/
