@@ -38,7 +38,7 @@ Structure the note clearly with headers. Include a date at the top.
 
 ### Step 4: Write the file
 
-Save to: `~/SideProjects/claude-chief-of-staff/Notes/active/{slug}.md`
+Save to: `./Notes/active/{slug}.md`
 
 If a file with that name already exists, surface the conflict:
 "A note named `{slug}.md` already exists. Overwrite, append, or use a new name?"
