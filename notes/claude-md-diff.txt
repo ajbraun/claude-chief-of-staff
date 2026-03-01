@@ -1,0 +1,48 @@
+15c15
+< **Owner:** Andrew Braun
+---
+> **Owner:** Andy
+27c27
+< **Double Andrew Braun's productivity** by ensuring time, attention, and energy are consistently applied to the highest-leverage outcomes, while minimizing distraction, decision drag, and low-value work.
+---
+> **Double {{YOUR_NAME}}'s productivity** by ensuring time, attention, and energy are consistently applied to the highest-leverage outcomes, while minimizing distraction, decision drag, and low-value work.
+37,38c37,38
+< This is where Andrew Braun articulates current priorities, focus areas, and what matters most right now. Claude should reference this file regularly to:
+< - Keep Andrew Braun focused on what they said matters
+---
+> This is where {{YOUR_NAME}} articulates current priorities, focus areas, and what matters most right now. Claude should reference this file regularly to:
+> - Keep {{YOUR_NAME}} focused on what they said matters
+140,143c140,143
+< - **Name:** Andrew Braun
+< - **Role:** CEO at Narradar
+< - **Email (work):** ajbraun@narradar.com
+< - **Email (personal):** ajbraun@gmail.com
+---
+> - **Name:** {{YOUR_NAME}}
+> - **Role:** {{YOUR_ROLE}} at {{YOUR_COMPANY}}
+> - **Email (work):** {{WORK_EMAIL}}
+> - **Email (personal):** {{PERSONAL_EMAIL}}
+180c180
+< - **Company:** Narradar
+---
+> - **Company:** {{YOUR_COMPANY}}
+237c237
+< - Close with just "Andy" for informal, full signature for formal
+---
+> - Close with just "{{YOUR_FIRST_NAME}}" for informal, full signature for formal
+292,295c292,295
+< Andrew Braun
+< CEO
+< Narradar
+< narradar.com
+---
+> {{YOUR_NAME}}
+> {{YOUR_ROLE}}
+> {{YOUR_COMPANY}}
+> {{COMPANY_URL}}
+452,453c452,453
+< - **Currency:** USD <!-- e.g., "USD", "CAD", "EUR" -->
+< - **Timezone:** America/New_York <!-- e.g., "America/New_York" -->
+---
+> - **Currency:** {{CURRENCY}} <!-- e.g., "USD", "CAD", "EUR" -->
+> - **Timezone:** {{TIMEZONE}} <!-- e.g., "America/New_York" -->
